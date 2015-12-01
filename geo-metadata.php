@@ -12,6 +12,7 @@ License: GPL2
 //Adds a location input to post editor
 function blm_location_custom_meta(){
 	add_meta_box('blm_location_meta', __('Location of this post', 'location-textdomain'), 'blm_location_callback', 'post');
+	add_meta_box('blm_offer_location_meta', __('Location of this offer', 'location-textdomain'), 'blm_location_callback', 'bediq_offer');
 }
 add_action('add_meta_boxes', 'blm_location_custom_meta');
 
