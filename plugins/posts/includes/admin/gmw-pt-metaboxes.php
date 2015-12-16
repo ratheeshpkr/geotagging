@@ -33,7 +33,7 @@ class GMW_PT_Meta_Boxes {
         global $post_type;
 
         if ( isset( $this->settings[ 'post_types_settings' ][ 'post_types' ] ) && !empty( $this->settings[ 'post_types_settings' ][ 'post_types' ] ) && ( in_array( $post_type, $this->settings[ 'post_types_settings' ][ 'post_types' ] ) ) ) {
-			       	
+
             wp_register_style( 'gmw-pt-admin-style', 		GMW_PT_URL . 'assets/css/style-admin.css' );
             wp_register_script( 'gmw-admin-address-picker', GMW_PT_URL . 'assets/js/addresspicker.min.js', array( 'jquery' ), GMW_VERSION, true );
 
@@ -41,7 +41,7 @@ class GMW_PT_Meta_Boxes {
             if ( !isset( $this->settings['post_types_settings']['edit_post_zoom_level'] ) ) $this->settings['post_types_settings']['edit_post_zoom_level'] = 7;
             if ( !isset( $this->settings['post_types_settings']['edit_post_latitude'] ) )   $this->settings['post_types_settings']['edit_post_latitude']   = '40.7115441';
             if ( !isset( $this->settings['post_types_settings']['edit_post_longitude'] ) )  $this->settings['post_types_settings']['edit_post_longitude']  = '-74.01348689999998';
-            
+
         	wp_localize_script( 'gmw-admin-address-picker', 'gmwSettings', $this->settings );
         }
     }
@@ -282,24 +282,24 @@ class GMW_PT_Meta_Boxes {
         			'map_icon'          => ''
         	);
         }
-        
+
         if ( isset( $this->settings[ 'general_settings' ][ 'mandatory_address' ] ) )
             wp_localize_script( 'wppl-address-picker', 'addressMandatory', $this->settings[ 'general_settings' ][ 'mandatory_address' ] );
 		?>
-		
+
 		<?php do_action( 'gmw_admin_location_section_start', $post ); ?>
-		
+
 		<!--  <input type="text" name="gmw_post_level" id="gmw-post-level"> -->
 
 		<input type="hidden" name="this->meta_boxes_nonce" value="<?php echo wp_create_nonce(basename(__FILE__)); ?>" />
-		
+
 		<div class="gmw-location-section map">
 			<h3>
 				<?php _e( 'Use the map to drag and drop the marker to the desired location.','GMW' );?>
 			</h3>
 			<div id="map"></div>
 		</div>
-		
+
 		<div class="gmw-location-section current-location">
 			<h3>
 				<?php _e('Get your current location','GMW'); ?>
@@ -309,7 +309,7 @@ class GMW_PT_Meta_Boxes {
 					value="<?php _e('Locate Me','GMW'); ?>" />
 			</div>
 		</div>
-		
+
 		<div class="gmw-location-section autocomplete">
 			<h3>
 				<?php _e('Type an address to autocomplete','GMW'); ?>
@@ -319,22 +319,22 @@ class GMW_PT_Meta_Boxes {
 					value="<?php echo $post_info->address; ?>" />
 			</div>
 		</div>
-		
+
 		<div class="clear"></div>
 
             <div class="gmw-location-section gmw-location-manually-wrapper">
             	<h3><?php _e('Enter Location Manually','GMW'); ?></h3>
-            	
+
             	<div class="gmw-location-section-inner">
 
 	            	<div class="address">
 
 	            		<h3><?php _e('Address','GMW'); ?></h3>
-	            		
+
 	            		<div class="gmw-location-section-description">
 	            			<p><?php _e('Fill out the address fields and click "Get Lat/Long" to retrive the latitude and longitude of the location.','GMW'); ?></p>
 	            		</div>
-	            		
+
 	            		<table class="gmw-admin-location-table">
 	            			<tr>
 	            				<th><label for="<?php echo $this->meta_boxes['fields'][0]['id']; ?>"><?php echo $this->meta_boxes['fields'][0]['name']; ?></label></th>
@@ -366,35 +366,35 @@ class GMW_PT_Meta_Boxes {
 	            			</tr>
 	            		</table>
 	            		<table style="display:none;">
-	    
+
 	    					<tr>
 	            				<th><label for="<?php echo $this->meta_boxes['fields'][19]['id']; ?>"><?php echo $this->meta_boxes['fields'][19]['name']; ?></label></th>
 	            			</tr>
 	            			<tr>
 	            				<td><input type="text" id="<?php echo $this->meta_boxes['fields'][19]['id']; ?>" name="<?php echo $this->meta_boxes['fields'][19]['id']; ?>" class="<?php echo $this->meta_boxes['fields'][19]['id']; ?>" value="<?php echo $post_info->street_number; ?>"   /><br /></td>
 	            			</tr>
-	            			
+
 	            			<tr>
 	            				<th><label for="<?php echo $this->meta_boxes['fields'][20]['id']; ?>"><?php echo $this->meta_boxes['fields'][20]['name']; ?></label></th>
 	            			</tr>
 	            			<tr>
 	            				<td><input type="text" id="<?php echo $this->meta_boxes['fields'][20]['id']; ?>" name="<?php echo $this->meta_boxes['fields'][20]['id']; ?>" class="<?php echo $this->meta_boxes['fields'][20]['id']; ?>" value="<?php echo $post_info->street_name; ?>"   /><br /></td>
 	            			</tr>
-	            			
+
 	            			<tr>
 	            				<th><label for="<?php echo $this->meta_boxes['fields'][3]['id']; ?>"><?php echo $this->meta_boxes['fields'][3]['name']; ?></label></th>
 	            			</tr>
 	            			<tr>
 	            				<td><input type="text" name="<?php echo $this->meta_boxes['fields'][3]['id']; ?>" class="<?php echo $this->meta_boxes['fields'][3]['id']; ?>" value="<?php echo $post_info->state; ?>"   /><br /></td>
 	            			</tr>
-	            			
+
 	            			<tr>
 	            				<th><label for="<?php echo $this->meta_boxes['fields'][16]['id']; ?>"><?php echo $this->meta_boxes['fields'][16]['name']; ?></label></th>
 	            			</tr>
 	            			<tr>
 	            				<td><input type="text" name="<?php echo $this->meta_boxes['fields'][16]['id']; ?>" id="<?php echo $this->meta_boxes['fields'][16]['id']; ?>" class="<?php echo $this->meta_boxes['fields'][16]['id']; ?>" value="<?php echo $post_info->state_long; ?>" style="width: 100%;"/><br /></td>
 	            			</tr>
-	            			
+
 	            			<tr>
 	            				<th><label for="<?php echo $this->meta_boxes['fields'][5]['id']; ?>"><?php echo $this->meta_boxes['fields'][5]['name']; ?></label></th>
 	            			</tr>
@@ -470,104 +470,12 @@ class GMW_PT_Meta_Boxes {
             		</div>
            		</div>
             </div>
-            
-            <div class="gmw-location-section additional-information-wrapper">
-            	<h3 style="font-size:13px;"><?php _e( 'Additional Information','GMW' ); ?></h3>
-            
-            	<div style="padding:5px;">
-		
-	    			<div class="metabox-tabs-div">
-	    				<ul class="metabox-tabs" id="metabox-tabs">
-	    					<li class="active extra-info-tab"><a class="active" href="javascript:void(null);"><?php _e('Contact Information','GMW'); ?></a></li>
-    						<li class="days-hours-tab"><a href="javascript:void(null);"><?php _e('Days & Hours','GMW'); ?></a></li>
-	    				</ul>
-	    
-            			<div class="extra-info-tab">
-            				<h4 class="heading"><?php _e('Additional Information','GMW'); ?></h4>
-	    					<table class="form-table">
-	    						<tr>
-            						<th><label for="<?php echo $this->meta_boxes['fields'][6]['id']; ?>"><?php echo $this->meta_boxes['fields'][6]['name']; ?></label></th>
-	    							<td><input type="text" name="<?php echo $this->meta_boxes['fields'][6]['id']; ?>" id="<?php echo $this->meta_boxes['fields'][6]['id']; ?>" value="<?php echo $post_info->phone; ?>" /></td>
-            					</tr>
-            					<tr>
-            						<th><label for="<?php echo $this->meta_boxes['fields'][7]['id']; ?>"><?php echo $this->meta_boxes['fields'][7]['name']; ?></label></th>
-	   								<td><input type="text" name="<?php echo $this->meta_boxes['fields'][7]['id']; ?>" id="<?php echo $this->meta_boxes['fields'][7]['id']; ?>" value="<?php echo $post_info->fax; ?>"/></td>
-            					</tr>
-            					<tr>
-            						<th><label for="<?php echo $this->meta_boxes['fields'][8]['id']; ?>"><?php echo $this->meta_boxes['fields'][8]['name']; ?></label></th>
-	    							<td><input type="text" name="<?php echo $this->meta_boxes['fields'][8]['id']; ?>" id="<?php echo $this->meta_boxes['fields'][8]['id']; ?>" value="<?php echo $post_info->email; ?>" placeholder="<?php echo $this->meta_boxes['fields'][8]['placeholder']; ?>" /></td>
-           						</tr>
-            					<tr>
-            						<th><label for="<?php echo $this->meta_boxes['fields'][9]['id']; ?>"><?php echo $this->meta_boxes['fields'][9]['name']; ?></label></th>
-	    							<td>
-	    								<div style="position: relative;">
-	    									<!-- <span style="position: absolute; padding:8px 3px 8px 8px; font-size: 13px; color:#888 ">http://</span> -->
-	    									<input type="text" name="<?php echo $this->meta_boxes['fields'][9]['id']; ?>" id="<?php echo $this->meta_boxes['fields'][9]['id']; ?>" value="<?php echo $post_info->website; ?>" placeholder="<?php echo $this->meta_boxes['fields'][9]['placeholder']; ?>" />
-	    								</div>		
-	    							</td>
-           						</tr>
-            				</table>
-            			</div>
-	 		<?php 
-	 			$days_hours = get_post_meta( $post->ID, $this->meta_boxes['fields'][15]['id'], true );
-	 			$days_hours = ( isset( $days_hours ) && is_array( $days_hours ) && array_filter( $days_hours ) )  ? get_post_meta( $post->ID, $this->meta_boxes['fields'][15]['id'], true ) : false;
-	 		?>
-            			<div class="days-hours-tab">
-            				<h4 class="heading"><?php _e( 'Days & Hours', 'GMW' ); ?></h4>
-	    					<table class="form-table">
-            					<tr>
-            						<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Days','GMW'); ?></label></th>
-	    							<td style="width:150px"><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[0][days]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[0]['days']; ?>" style="width:150px" /><br /></td>
-	    							<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e( 'Hours','GMW' ); ?></label></th>
-	    							<td><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id']. '[0][hours]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[0]['hours']; ?>" style="width:150px" /><br /></td>
-            					</tr>
-            					<tr>
-           							<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Days','GMW'); ?></label></th>
-	    								<td style="width:150px"><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id']. '[1][days]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[1]['days']; ?>" style="width:150px" /><br /></td>
-    									<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Hours','GMW'); ?></label></th>
-    									<td><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id']. '[1][hours]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[1]['hours']; ?>" style="width:150px" /><br /></td>
-            						</tr>
-            					<tr>
-           							<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Days','GMW'); ?></label></th>
-    								<td style="width:150px"><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[2][days]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[2]['days']; ?>" style="width:150px" /><br /></td>
-	    							<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Hours','GMW'); ?></label></th>
-	    							<td><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[2][hours]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[2]['hours'];?>" style="width:150px" /><br /></td>
-           						</tr>
-            					<tr>
-            						<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Days','GMW'); ?></label></th>
-    								<td style="width:150px"><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[3][days]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[3]['days']; ?>" style="width:150px" /><br /></td>
-    								<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Hours','GMW'); ?></label></th>
-	    							<td><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[3][hours]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[3]['hours']; ?>" style="width:150px" /><br /></td>
-            					</tr>
-            					<tr>
-            						<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Days','GMW'); ?></label></th>
-	    							<td style="width:150px"><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[4][days]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[4]['days']; ?>" style="width:150px" /><br /></td>
-	    							<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Hours','GMW'); ?></label></th>
-	    							<td><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[4][hours]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[4]['hours']; ?>" style="width:150px" /><br /></td>
-            					</tr>
-            					<tr>
-            						<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Days','GMW'); ?></label></th>
-	    							<td style="width:150px"><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[5][days]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[5]['days']; ?>" style="width:150px" /><br /></td>
-	    							<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Hours','GMW'); ?></label></th>
-	    							<td><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[5][hours]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[5]['hours']; ?>" style="width:150px" /><br /></td>
-            					</tr>
-            					<tr>
-            						<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Days','GMW'); ?></label></th>
-	    							<td style="width:150px"><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[6][days]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[6]['days']; ?>" style="width:150px" /><br /></td>
-	    							<th style="width:30px"><label for="<?php echo $this->meta_boxes['fields'][15]['id']; ?>"><?php _e('Hours','GMW'); ?></label></th>
-	    							<td><input type="text" name="<?php echo $this->meta_boxes['fields'][15]['id'].'[6][hours]'; ?>" id="<?php echo $this->meta_boxes['fields'][15]['id']; ?>" value="<?php echo $days_hours[6]['hours']; ?>" style="width:150px" /><br /></td>
-            					</tr>
-            				</table>
-            			</div>
-            		</div>
-            	</div>
-            </div>
-	 	
+
 	 	<?php do_action( 'gmw_admin_location_section_end', $post ); ?>
-	 	
+
      	<div class="clear"></div>
-		<?php 
-			
+		<?php
+
     	wp_enqueue_style( 'gmw-pt-admin-style' );
     	wp_enqueue_script( 'google-maps' );
     	wp_enqueue_script( 'jquery-ui-autocomplete' );
@@ -578,9 +486,9 @@ class GMW_PT_Meta_Boxes {
 
      	wp_localize_script( 'gmw-admin-address-picker','gmwOptions', $this->settings );
 	}
-	
-	/* EVERY NEW POST OR WHEN POST IS BEING UPDATED 
-     * CREATE MAP, LATITUDE, LONGITUDE AND SAVE DATA INTO OUR LOCATIONS TABLE 
+
+	/* EVERY NEW POST OR WHEN POST IS BEING UPDATED
+     * CREATE MAP, LATITUDE, LONGITUDE AND SAVE DATA INTO OUR LOCATIONS TABLE
      * DATA SAVED - POST ID, POST TYPE, POST STATUS , POST TITLE , LATITUDE, LONGITUDE AND ADDRESS
      */
 
@@ -648,7 +556,7 @@ class GMW_PT_Meta_Boxes {
                     )
             );
         } else {
-        	
+
             $_POST['gmw_map_icon']  = ( isset( $_POST['gmw_map_icon'] ) && !empty( $_POST['gmw_map_icon'] ) ) ? $_POST['gmw_map_icon'] : '_default.png';
             $_POST 					= apply_filters( 'gmw_pt_before_location_updated', $_POST, $post->ID );
 
@@ -660,7 +568,7 @@ class GMW_PT_Meta_Boxes {
             		'post_title'        => $_POST['post_title'],
             		'post_status'       => $_POST['post_status'],
             		'street_number'     => $_POST['_wppl_street_number'],
-            		'street_name'       => $_POST['_wppl_street_name'], 
+            		'street_name'       => $_POST['_wppl_street_name'],
             		'street'            => $_POST['_wppl_street'],
             		'apt'               => $_POST['_wppl_apt'],
             		'city'              => $_POST['_wppl_city'],
@@ -679,10 +587,10 @@ class GMW_PT_Meta_Boxes {
             		'long'              => $_POST['_wppl_long'],
             		'map_icon'          => $_POST['gmw_map_icon'],
            	);
-            
+
             //update locaiton in database
             gmw_replace_pt_location_in_db( $location );
-            
+
         }
         do_action( 'gmw_pt_after_location_updated', $post->ID, $_POST );
     }
